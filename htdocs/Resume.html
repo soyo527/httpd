@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历 - 杨泽康</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #007bff;
+        }
+
+        /* 主要内容区域 */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 60px;
+        }
+
+        /* 个人简历部分 */
+        #resume {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .profile-image {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* 技能部分 */
+        #skills {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-item {
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* 项目展示部分 */
+        #projects {
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .project-media {
+            width: 100%;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        /* 博客链接部分 */
+        #blog {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .blog-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .blog-link:hover {
+            transform: translateY(-3px);
+            background: #0056b3;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            #resume {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+		<div class="nav-links">
+			<a href="#resume">简历</a>
+			<a href="#skills">技能</a>
+			<a href="#projects">项目</a>
+			<a href="#blog">博客</a>
+		</div>
+	</nav>
+
+    <!-- 个人简历部分 -->
+    <section id="resume" class="section">
+		<div class="profile-image-container">
+			<img src="test.png" alt="个人照片" class="profile-image">
+		</div>
+		<div class="resume-content">
+			<h2>个人简历</h2>
+			<!-- 在这里添加您的个人简历内容 -->
+			<p>姓名：杨泽康</p>
+			<p>学历：本科在读</p>
+			<p>工作经验：</p>
+			<!-- 更多内容 -->
+		</div>
+	</section>
+
+    <!-- 技能部分 -->
+    <section id="skills" class="section">
+        <h2>专业技能</h2>
+        <div class="skills-grid">
+            <!-- 在这里添加您的技能项 -->
+            <div class="skill-item">熟练使用C++面向对象编程，有充足的项目经验。了解C++11/14常用特性，如lambda表达式、智能指针等。了解C++的内存管理机制，熟练使用STL库常用容器与算法，了解容器的底层数据结构。</div>
+            <div class="skill-item">熟悉TCP/IP五层模型、拥塞控制等网络基础知识，掌握 HTTP、TCP/IP、UDP等常见协议。了解C++Socket网络编程，有项目经验。</div>
+            <div class="skill-item">掌握Linux基本指令及相关工具的使用，如gcc、vim等,能够根据软件官网文档完成相关服务环境搭建。</div>
+            <!-- 更多技能 -->
+        </div>
+    </section>
+
+    <!-- 项目展示部分 -->
+    <section id="projects" class="section">
+        <h2>项目经验</h2>
+        <div class="project-card">
+            <h3>项目名称</h3>
+            <!-- 在这里添加视频或音频 -->
+            <video class="project-media" controls>
+                <source src="your-video.mp4" type="video/mp4">
+                您的浏览器不支持视频标签
+            </video>
+            <p>项目描述</p>
+        </div>
+        <!-- 更多项目卡片 -->
+    </section>
+
+    <!-- 博客链接部分 -->
+    <section id="blog" class="section">
+        <h2>个人博客</h2>
+        <p>欢迎访问我的博客，了解更多专业见解</p>
+        <a href="https://github.com/soyo527" class="blog-link" target="_blank">访问博客</a>
+    </section>
+</body>
+</html>

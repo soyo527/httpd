@@ -34,23 +34,26 @@ void not_found(int client)
     fclose(file);
 }
 
-void headers(int client)
+void headers(int client, const char* type)
 {
     // 发送响应包的头信息
     char buf[1024];
 
+    // HTTP响应状态行
     strcpy(buf, "HTTP/1.0 200 OK\r\n");
     send(client, buf, strlen(buf), 0);
 
+    // 服务器标识
     strcpy(buf, "Server: YzkHttpd/0.1\r\n");
     send(client, buf, strlen(buf), 0);
 
-    strcpy(buf, "Content-Type:text/html\n");
+    // 动态设置Content-Type
+    snprintf(buf, sizeof(buf), "Content-Type:%s\n", type);
     send(client, buf, strlen(buf), 0);
 
+    // 空行表示头部结束
     strcpy(buf, "\r\n");
     send(client, buf, strlen(buf), 0);
-
 }
 
 void cat(int client, FILE* resource)
@@ -84,14 +87,32 @@ void server_file(int client, const char* filename)
     FILE* resource = NULL;
 
     char filename_cmp[5];
-    for (int i = strlen(filename), j = 4; j>=0; i--, j--)
+    for (int i = strlen(filename), j = 4; j >= 0; i--, j--)
     {
         filename_cmp[j] = filename[i];
     }
 
+    // 判断文件类型
+    const char* content_type = "html"; // 默认类型
     if (strcmp(filename_cmp, "html") == 0)
     {
         resource = fopen(filename, "r");
+        content_type = "text/html";
+    }
+    else if (strcmp(filename_cmp, "jpeg") == 0 || strcmp(filename_cmp, "jpg") == 0)
+    {
+        resource = fopen(filename, "rb");
+        content_type = "image/jpeg";
+    }
+    else if (strcmp(filename_cmp, "png") == 0)
+    {
+        resource = fopen(filename, "rb");
+        content_type = "image/png";
+    }
+    else if (strcmp(filename_cmp, "mp4") == 0)
+    {
+        resource = fopen(filename, "rb");
+        content_type = "video/mp4";
     }
     else
     {
@@ -104,9 +125,8 @@ void server_file(int client, const char* filename)
     }
     else
     {
-        // 正式发送资源给浏览器
-
-        headers(client);
+        // 动态设置响应头部
+        headers(client, content_type);
 
         // 发送请求的资源的信息
         cat(client, resource);
@@ -116,3 +136,4 @@ void server_file(int client, const char* filename)
 
     fclose(resource);
 }
+
